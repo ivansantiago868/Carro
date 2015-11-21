@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2015 9:14:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.entidad.Articulo" table="articulo" catalog="carrocompras" optimistic-lock="version">
+        <id name="idArticulo" type="java.lang.Integer">
+            <column name="idArticulo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="50" not-null="true" />
+        </property>
+        <property name="valor" type="int">
+            <column name="Valor" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="Cantidad" not-null="true" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idArticulo" not-null="true" />
+            </key>
+            <one-to-many class="com.entidad.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>

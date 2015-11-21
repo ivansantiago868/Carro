@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2015 9:14:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.entidad.Usuarios" table="usuarios" catalog="carrocompras" optimistic-lock="version">
+        <id name="idUsuarios" type="java.lang.Integer">
+            <column name="idUsuarios" />
+            <generator class="identity" />
+        </id>
+        <property name="usuarios" type="string">
+            <column name="usuarios" length="50" not-null="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="50" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" not-null="true" />
+        </property>
+        <property name="eliminar" type="boolean">
+            <column name="eliminar" not-null="true" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUsuarios" not-null="true" />
+            </key>
+            <one-to-many class="com.entidad.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>
